@@ -3,11 +3,6 @@
 # fi
 alias phone='cd /sdcard/'
 alias cls='clear'
-alias quantum='ssh quantum'
-alias piclaw='ssh piclaw'
-alias piclawcf='ssh piclawcf'
-alias ironclaw='ssh ironclaw'
-alias corex='ssh corex'
 alias ls='eza --icons --color=always'
 alias ll='ls -alF'
 alias la='ls -A'
