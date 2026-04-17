@@ -1,89 +1,24 @@
 # KAZ-AI-Android-OS
 
-Transform your Android device into an AI-first Linux environment using Termux and OpenCode (or Ollama). Choose your setup:
+Transform your Android device into an AI-first Linux environment using Termux. Choose your setup:
 
 - **Option 1**: Full Linux + OpenCode via Proot-Distro
-- **Option 2**: Ollama AI models in Termux (no Linux setup)
+- **Option 2**: Ollama AI models in Termux (no full Linux setup)
 - **Option 3**: Lightweight UI via orailnoor modules
 
-## Features
+---
 
-- [Ubuntu via PRoot](
-- [OpenCode Integration](
-- [LLM Tools (Ollama/Langchain)](
+## Option 1: Full Linux + AI (Proot + OpenCode)
 
-## How to Get Started
+This gives you full Ubuntu environment with OpenCode as your AI assistant.
 
-### Option 1: Full Linux + AI (Proot + OpenCode)
+### 1. Install APKs
 
-1. Install APKs: `Termux.apk`, `Termux-X11.apk`
-2. Run:
-```bash
-pkg install proot-distro && proot-distro install ubuntu
-source ~/.bashrc && opencode
-```
-3. Control your phone with voice commands!
-
-### Option 2: Ollama in Termux (No Linux Setup)
-
-1. Install `Termux.apk`
-2. Create Linux environment:
-```bash
-proot-distro install ubuntu
-llama install && ollama serve &
-```
-3. Run `ollama run llama2` in Termux
-
-### Option 3: Lightweight UI
-
-Install `orailnoor-CloudBot-Termux` APK and use its interface.
-
-## Requirements
-
-- Android 7.0+
-- Termux (F-Droid)
-- Internet for APK/pkg downloads
-
-## Project Structure
-
-```
-KAZ-AI-Android-OS/
-├── .bashrc
-├── .termux/
-├── fonts/
-├── termux-xxx/
-├── submodules/
-└── README.md
-```
-
-## License
-
-MIT License
-
-## What is KAZ-AI-Android-OS?
-
-KAZ-AI-Android-OS turns your boring Android phone into a powerful Linux workstation with an AI-driven interface. Built on proot-distro with Ubuntu, it uses **OpenCode** as the main control interface - allowing you to interact with your phone using natural language and AI assistance.
-
-## Features
-
-- **Ubuntu via PRoot** - Full Linux environment on Android (no root required)
-- **OpenCode Integration** - AI-powered CLI assistant for natural language phone control
-- **Termux-X11** - Desktop-class display with GUI support
-- **Custom Fonts** - OpenDyslexic, Terminus, and more for accessibility
-- **Pre-configured Shell** - Starship prompt, custom aliases, and optimized .bashrc
-- **Modular Design** - Includes CloudBot and LLM tools for扩展功能
-
-## Quick Start
-
-### 1. Install Termux & Dependencies
-
-Install these APKs from this repository:
+Install these from this repository:
 - `Termux.apk` - Base terminal
-- `Termux-X11.apk` - Display server for GUI
-- `Termux-API.apk` - Android APIs access
-- `Termux-Styling.apk` - Theme support
+- `Termux-X11.apk` - Display server for GUI apps
 
-### 2. Setup PRoot Distro
+### 2. Setup Proot-Distro & Ubuntu
 
 ```bash
 # Install proot-distro
@@ -99,7 +34,7 @@ proot-distro login ubuntu
 ### 3. Install OpenCode
 
 ```bash
-# Inside Ubuntu (proot-distro login ubuntu)
+# Inside Ubuntu
 
 # Install dependencies
 apt update && apt install -y curl git
@@ -114,33 +49,92 @@ source ~/.bashrc
 opencode
 ```
 
-## Usage
+Now control your phone with natural language commands!
 
-Once OpenCode is installed, you can control your phone using natural language:
+---
 
+## Option 2: Ollama in Termux
+
+Run AI language models directly in Termux without full Linux setup.
+
+### 1. Install Termux
+
+Install `Termux.apk` from this repository or [F-Droid](https://f-droid.org).
+
+### 2. Install Proot-Distro
+
+```bash
+pkg update && pkg install proot-distro
 ```
-You: Install python and create a hello world script
-OpenCode: [executes commands]
+
+### 3. Create Ubuntu Environment
+
+```bash
+proot-distro install ubuntu
+proot-distro login ubuntu
 ```
+
+### 4. Install Ollama
+
+```bash
+# Inside Ubuntu
+
+# Update and install dependencies
+apt update && apt install -y wget curl unzip
+
+# Download Ollama for ARM64
+wget https://ollama.com/download/ollama-linux-arm64
+
+# Install Ollama
+mv ollama-linux-arm64 /usr/local/bin/ollama
+chmod +x /usr/local/bin/ollama
+
+# Start Ollama server
+ollama serve &
+
+# Pull a model (e.g., llama2)
+ollama pull llama2
+```
+
+### 5. Run Ollama
+
+```bash
+ollama run llama2
+```
+
+---
+
+## Option 3: Lightweight UI (orailnoor Modules)
+
+For a simple graphical interface, use the orailnoor modules included as submodules.
+
+See `orailnoor-CloudBot-Termux/` directory for usage instructions.
+
+---
 
 ## Requirements
 
 - Android 7.0+
-- Termux (from F-Droid, not Play Store)
-- Termux-X11
+- Termux (from F-Droid, not Google Play Store)
+- Termux-X11 (for GUI support)
 - Internet connection for package downloads
+
+---
 
 ## Project Structure
 
 ```
 KAZ-AI-Android-OS/
-├── .bashrc              # Shell configuration
-├── .termux/             # Termux settings (colors, font, properties)
-├── fonts/               # Custom fonts
-├── termux-linux-setup/  # Linux environment setup (submodule)
-├── termux-llm/          # LLM integration tools (submodule)
-└── orailnoor-CloudBot-Termux/  # Cloud bot module (submodule)
+├── .bashrc                    # Shell configuration
+├── .termux/                   # Termux settings (colors, fonts, properties)
+├── fonts/                     # Custom fonts (OpenDyslexic, Terminus, etc.)
+├── termux-linux-setup/        # Linux environment setup (submodule)
+├── termux-llm/                # LLM integration tools (submodule)
+├── orailnoor-CloudBot-Termux/ # Cloud bot module (submodule)
+└── README.md
 ```
+
+---
 
 ## License
 
