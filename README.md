@@ -1,10 +1,10 @@
-# KAZ-OS
+# KAZ-AI-Android-OS
 
 Transform your Android device into an AI-first Linux environment using Termux and OpenCode.
 
 ## What is KAZ-OS?
 
-KAZ-OS turns your boring Android phone into a powerful Linux workstation with an AI-driven interface. Built on proot-distro with Ubuntu, it uses **OpenCode** as the main control interface - allowing you to interact with your phone using natural language and AI assistance.
+KAZ-AI-Android-OS turns your boring Android phone into a powerful Linux workstation with an AI-driven interface. Built on proot-distro with Ubuntu, it uses **OpenCode** as the main control interface - allowing you to interact with your phone using natural language and AI assistance.
 
 ## Features
 
@@ -49,6 +49,9 @@ apt update && apt install -y curl git
 # Install OpenCode
 curl -sSL https://opencode.ai/install.sh | bash
 
+# Load shell configuration
+source ~/.bashrc
+
 # Start OpenCode
 opencode
 ```
@@ -72,7 +75,7 @@ OpenCode: [executes commands]
 ## Project Structure
 
 ```
-KAZ-OS/
+KAZ-AI-Android-OS/
 ├── .bashrc              # Shell configuration
 ├── .termux/             # Termux settings (colors, font, properties)
 ├── fonts/               # Custom fonts
