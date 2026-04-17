@@ -1,0 +1,9 @@
+[submodule "orailnoor-CloudBot-Termux"]
+	path = orailnoor-CloudBot-Termux
+	url = https://github.com/orailnoor/orailnoor-CloudBot-Termux.git
+[submodule "termux-linux-setup"]
+	path = termux-linux-setup
+	url = https://github.com/orailnoor/termux-linux-setup.git
+[submodule "termux-llm"]
+	path = termux-llm
+	url = https://github.com/orailnoor/termux-llm.git
