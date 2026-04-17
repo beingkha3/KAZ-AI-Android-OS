@@ -1,8 +1,66 @@
 # KAZ-AI-Android-OS
 
-Transform your Android device into an AI-first Linux environment using Termux and OpenCode.
+Transform your Android device into an AI-first Linux environment using Termux and OpenCode (or Ollama). Choose your setup:
 
-## What is KAZ-OS?
+- **Option 1**: Full Linux + OpenCode via Proot-Distro
+- **Option 2**: Ollama AI models in Termux (no Linux setup)
+- **Option 3**: Lightweight UI via orailnoor modules
+
+## Features
+
+- [Ubuntu via PRoot](
+- [OpenCode Integration](
+- [LLM Tools (Ollama/Langchain)](
+
+## How to Get Started
+
+### Option 1: Full Linux + AI (Proot + OpenCode)
+
+1. Install APKs: `Termux.apk`, `Termux-X11.apk`
+2. Run:
+```bash
+pkg install proot-distro && proot-distro install ubuntu
+source ~/.bashrc && opencode
+```
+3. Control your phone with voice commands!
+
+### Option 2: Ollama in Termux (No Linux Setup)
+
+1. Install `Termux.apk`
+2. Create Linux environment:
+```bash
+proot-distro install ubuntu
+llama install && ollama serve &
+```
+3. Run `ollama run llama2` in Termux
+
+### Option 3: Lightweight UI
+
+Install `orailnoor-CloudBot-Termux` APK and use its interface.
+
+## Requirements
+
+- Android 7.0+
+- Termux (F-Droid)
+- Internet for APK/pkg downloads
+
+## Project Structure
+
+```
+KAZ-AI-Android-OS/
+├── .bashrc
+├── .termux/
+├── fonts/
+├── termux-xxx/
+├── submodules/
+└── README.md
+```
+
+## License
+
+MIT License
+
+## What is KAZ-AI-Android-OS?
 
 KAZ-AI-Android-OS turns your boring Android phone into a powerful Linux workstation with an AI-driven interface. Built on proot-distro with Ubuntu, it uses **OpenCode** as the main control interface - allowing you to interact with your phone using natural language and AI assistance.
 
