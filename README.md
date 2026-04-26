@@ -21,12 +21,38 @@ You can install all paths and use whichever one fits the task.
 
 - Do not install Termux from the Google Play Store. That version is outdated.
 - Use the Termux APK from this repo or install Termux from F-Droid.
+- Keep this repository in `/sdcard/termux/KAZ-AI-Android-OS` so it is easy to find from both Android and Termux.
 - OpenCode should be installed inside Proot-Distro Ubuntu for the best Linux compatibility.
 - Ollama can run directly in Termux. It does not use an APK.
 - Local AI models can use a lot of RAM, storage, and battery. Start with small models.
 - No root access is required.
 
-## Step 1: Install Android Apps
+## Step 1: Create Your Phone Workspace
+
+Before doing the Linux setup, create one easy-to-remember folder on your Android storage:
+
+```text
+/sdcard/termux
+```
+
+You can create it from your Android file manager:
+
+1. Open your phone's file manager.
+2. Go to internal storage.
+3. Create a folder named `termux`.
+4. Download or extract this repository into that folder.
+
+The final folder should look like this:
+
+```text
+/sdcard/termux/KAZ-AI-Android-OS
+```
+
+This makes the files easy to find later from both Android and Termux.
+
+If you are comfortable using Git, you can skip the manual ZIP download and clone the repo from inside Termux in Step 5. The Git method is best because it also handles submodules and large APK files correctly.
+
+## Step 2: Install Android Apps
 
 Install these APKs from this repository:
 
@@ -39,14 +65,29 @@ Install these APKs from this repository:
 
 After installing Termux, open it once.
 
-## Step 2: Prepare Termux
+## Step 3: Connect Termux To Phone Storage
+
+Run this first so Termux can access `/sdcard/termux`:
+
+```bash
+termux-setup-storage
+```
+
+Android will ask for storage permission. Allow it.
+
+Check that the folder is visible from Termux:
+
+```bash
+ls /sdcard/termux
+```
+
+## Step 4: Prepare Termux
 
 Run these commands in Termux:
 
 ```bash
 pkg update && pkg upgrade -y
 pkg install -y git git-lfs proot-distro eza starship termux-api
-termux-setup-storage
 ```
 
 Check that Termux is working:
@@ -55,9 +96,18 @@ Check that Termux is working:
 termux-info
 ```
 
-## Step 3: Download This Repository
+## Step 5: Download Or Open This Repository
+
+If you already downloaded and extracted the repo manually, go to it:
 
 ```bash
+cd /sdcard/termux/KAZ-AI-Android-OS
+```
+
+If the folder is not there yet, clone it directly into `/sdcard/termux`:
+
+```bash
+cd /sdcard/termux
 git lfs install
 git clone --recurse-submodules https://github.com/beingkha3/KAZ-AI-Android-OS.git
 cd KAZ-AI-Android-OS
@@ -69,16 +119,24 @@ If submodules are missing, run:
 git submodule update --init --recursive
 ```
 
-## Step 4: Apply KAZ Shell Setup
+## Step 6: Move KAZ Config Into Termux Home
 
-This repo includes a useful `.bashrc` with shortcuts and a better shell prompt.
+This repo includes a useful `.bashrc`, `.termux` config, and fonts. Copy them into the Termux home area:
 
 ```bash
 cp .bashrc ~/.bashrc
 mkdir -p ~/.termux
 cp -r .termux/* ~/.termux/
+mkdir -p ~/fonts
+cp -r fonts/* ~/fonts/
 termux-reload-settings
 source ~/.bashrc
+```
+
+Your config now lives in Termux home, while the full repo stays easy to access at:
+
+```text
+/sdcard/termux/KAZ-AI-Android-OS
 ```
 
 Available shortcuts:
@@ -112,7 +170,7 @@ proot-distro list
 
 ### A2. Enter Ubuntu
 
-Use `--termux-home` so Ubuntu can access your Termux home folder and this repository:
+Use `--termux-home` so Ubuntu can access your Termux home folder. The `/sdcard/termux` folder should also remain easy to reach:
 
 ```bash
 proot-distro login --termux-home ubuntu
@@ -121,7 +179,7 @@ proot-distro login --termux-home ubuntu
 Inside Ubuntu, go back into the repo folder:
 
 ```bash
-cd ~/KAZ-AI-Android-OS
+cd /sdcard/termux/KAZ-AI-Android-OS
 ```
 
 ### A3. Install OpenCode
@@ -230,12 +288,14 @@ Install `Termux-X11.apk`, then follow the GUI instructions from the relevant set
 
 If you are not sure what to choose, follow this order:
 
-1. Install Termux and prepare it using Step 1 to Step 4.
-2. Install Ubuntu with Path A.
-3. Install OpenCode inside Ubuntu.
-4. Use OpenCode as your main AI interface.
-5. Add Ollama later if you want local models.
-6. Add Termux-X11 later if you want GUI apps.
+1. Create `/sdcard/termux` and put this repo there.
+2. Install Termux and connect storage access.
+3. Prepare Termux and copy the KAZ config into Termux home.
+4. Install Ubuntu with Path A.
+5. Install OpenCode inside Ubuntu.
+6. Use OpenCode as your main AI interface.
+7. Add Ollama later if you want local models.
+8. Add Termux-X11 later if you want GUI apps.
 
 ## Common Problems
 
@@ -245,7 +305,7 @@ If you are not sure what to choose, follow this order:
 | `starship: command not found` | Run `pkg install starship` in Termux |
 | `eza: command not found` | Run `pkg install eza` in Termux |
 | `opencode: command not found` | Run `source .bashrc`, then restart the terminal or reinstall OpenCode inside Ubuntu |
-| Ubuntu cannot see repo files | Login with `proot-distro login --termux-home ubuntu` |
+| Ubuntu cannot see repo files | Login with `proot-distro login --termux-home ubuntu`, then use `cd /sdcard/termux/KAZ-AI-Android-OS` |
 | Ollama model is too slow | Use a smaller model like `qwen2.5:0.5b` |
 | Phone gets hot | Stop unused servers and avoid large local models |
 
@@ -260,7 +320,7 @@ If you are not sure what to choose, follow this order:
 ## Project Structure
 
 ```text
-KAZ-AI-Android-OS/
+/sdcard/termux/KAZ-AI-Android-OS/
 |-- .bashrc                    # Shell shortcuts and prompt setup
 |-- .termux/                   # Termux colors, font, and properties
 |-- fonts/                     # Custom fonts
