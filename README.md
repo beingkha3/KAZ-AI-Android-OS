@@ -22,6 +22,7 @@ You can install all paths and use whichever one fits the task.
 - Do not install Termux from the Google Play Store. That version is outdated.
 - Use the Termux APK from this repo or install Termux from F-Droid.
 - Keep this repository in `/sdcard/termux/KAZ-AI-Android-OS` so it is easy to find from both Android and Termux.
+- This repo has two shell configs: `.bashrc` for Termux and `proot/.bashrc` for Ubuntu/Proot.
 - OpenCode should be installed inside Proot-Distro Ubuntu for the best Linux compatibility.
 - Ollama can run directly in Termux. It does not use an APK.
 - Local AI models can use a lot of RAM, storage, and battery. Start with small models.
@@ -119,9 +120,9 @@ If submodules are missing, run:
 git submodule update --init --recursive
 ```
 
-## Step 6: Move KAZ Config Into Termux Home
+## Step 6: Move KAZ Termux Config Into Termux Home
 
-This repo includes a useful `.bashrc`, `.termux` config, and fonts. Copy them into the Termux home area:
+This repo includes a useful Termux `.bashrc`, `.termux` config, and fonts. Copy them into the Termux home area:
 
 ```bash
 cp .bashrc ~/.bashrc
@@ -139,7 +140,7 @@ Your config now lives in Termux home, while the full repo stays easy to access a
 /sdcard/termux/KAZ-AI-Android-OS
 ```
 
-Available shortcuts:
+Available Termux shortcuts:
 
 | Shortcut | What It Does |
 | --- | --- |
@@ -192,10 +193,22 @@ curl -sS https://starship.rs/install.sh | sh -s -- -y
 curl -sSL https://opencode.ai/install.sh | bash
 ```
 
-Before starting OpenCode, load the shell setup from this repo:
+### A4. Apply The Proot Linux Shell Setup
+
+The Proot Linux config lives at `proot/.bashrc`. This is different from the Termux `.bashrc` used earlier.
+
+If you keep a working Proot config at `/sdcard/termux/.bashrc`, this repo stores that same idea as `proot/.bashrc` so it does not overwrite the Termux config.
+
+Copy it into Ubuntu's home directory:
 
 ```bash
-source .bashrc
+cp proot/.bashrc ~/.bashrc
+```
+
+Before starting OpenCode, load it:
+
+```bash
+source ~/.bashrc
 ```
 
 Then start OpenCode:
@@ -209,6 +222,16 @@ Verify OpenCode is available:
 ```bash
 opencode --help
 ```
+
+Useful Proot Linux shortcuts:
+
+| Shortcut | What It Does |
+| --- | --- |
+| `portal` | Go to `/` and start OpenCode |
+| `cls` | Clear the terminal |
+| `ls` | Uses `eza` with icons and colors |
+| `ll` | Detailed file list |
+| `la` | Show hidden files |
 
 Example prompt to try inside OpenCode:
 
@@ -290,12 +313,13 @@ If you are not sure what to choose, follow this order:
 
 1. Create `/sdcard/termux` and put this repo there.
 2. Install Termux and connect storage access.
-3. Prepare Termux and copy the KAZ config into Termux home.
+3. Prepare Termux and copy the KAZ Termux config into Termux home.
 4. Install Ubuntu with Path A.
 5. Install OpenCode inside Ubuntu.
-6. Use OpenCode as your main AI interface.
-7. Add Ollama later if you want local models.
-8. Add Termux-X11 later if you want GUI apps.
+6. Copy `proot/.bashrc` into Ubuntu and run `source ~/.bashrc`.
+7. Use OpenCode as your main AI interface.
+8. Add Ollama later if you want local models.
+9. Add Termux-X11 later if you want GUI apps.
 
 ## Common Problems
 
@@ -304,7 +328,7 @@ If you are not sure what to choose, follow this order:
 | `pkg` commands fail | Run `pkg update` and check internet connection |
 | `starship: command not found` | Run `pkg install starship` in Termux |
 | `eza: command not found` | Run `pkg install eza` in Termux |
-| `opencode: command not found` | Run `source .bashrc`, then restart the terminal or reinstall OpenCode inside Ubuntu |
+| `opencode: command not found` | In Ubuntu, run `source ~/.bashrc`, then restart the terminal or reinstall OpenCode inside Ubuntu |
 | Ubuntu cannot see repo files | Login with `proot-distro login --termux-home ubuntu`, then use `cd /sdcard/termux/KAZ-AI-Android-OS` |
 | Ollama model is too slow | Use a smaller model like `qwen2.5:0.5b` |
 | Phone gets hot | Stop unused servers and avoid large local models |
@@ -321,7 +345,8 @@ If you are not sure what to choose, follow this order:
 
 ```text
 /sdcard/termux/KAZ-AI-Android-OS/
-|-- .bashrc                    # Shell shortcuts and prompt setup
+|-- .bashrc                    # Termux shell shortcuts and prompt setup
+|-- proot/.bashrc              # Ubuntu/Proot shell setup for OpenCode
 |-- .termux/                   # Termux colors, font, and properties
 |-- fonts/                     # Custom fonts
 |-- orailnoor-CloudBot-Termux/ # Submodule
