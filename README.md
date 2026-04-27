@@ -146,7 +146,7 @@ Available Termux shortcuts:
 | --- | --- |
 | `phone` | Go to `/sdcard/` |
 | `cls` | Clear the terminal |
-| `linux` | Login to Ubuntu with `proot-distro login --termux-home ubuntu` |
+| `linux` | Login to Ubuntu with `proot-distro login ubuntu` |
 | `ls` | Uses `eza` with icons and colors |
 | `ll` | Detailed file list |
 | `la` | Show hidden files |
@@ -174,7 +174,7 @@ proot-distro list
 Use `--termux-home` so Ubuntu can access your Termux home folder. The `/sdcard/termux` folder should also remain easy to reach:
 
 ```bash
-proot-distro login --termux-home ubuntu
+proot-distro login ubuntu
 ```
 
 Inside Ubuntu, go back into the repo folder:
@@ -329,7 +329,7 @@ If you are not sure what to choose, follow this order:
 | `starship: command not found` | Run `pkg install starship` in Termux |
 | `eza: command not found` | Run `pkg install eza` in Termux |
 | `opencode: command not found` | In Ubuntu, run `source ~/.bashrc`, then restart the terminal or reinstall OpenCode inside Ubuntu |
-| Ubuntu cannot see repo files | Login with `proot-distro login --termux-home ubuntu`, then use `cd /sdcard/termux/KAZ-AI-Android-OS` |
+| Ubuntu cannot see repo files | Login with `proot-distro login ubuntu`, then use `cd /sdcard/termux/KAZ-AI-Android-OS` |
 | Ollama model is too slow | Use a smaller model like `qwen2.5:0.5b` |
 | Phone gets hot | Stop unused servers and avoid large local models |
 
