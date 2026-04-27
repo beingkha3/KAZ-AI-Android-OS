@@ -190,7 +190,7 @@ Run this inside Ubuntu:
 ```bash
 apt update && apt install -y curl git ca-certificates build-essential eza
 curl -sS https://starship.rs/install.sh | sh -s -- -y
-curl -sSL https://opencode.ai/install.sh | bash
+curl -fsSL https://opencode.ai/install | bash
 ```
 
 ### A4. Apply The Proot Linux Shell Setup
